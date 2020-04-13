@@ -311,111 +311,129 @@
                         "schema": {
                             "title": "chips-request-payment-token.v1",
                             "type": "object",
+                            "description": "Request payload to generate a payment token",
                             "properties": {
+                                "payeeRefInfo": {
+                                    "type": "string",
+                                    "description": "Used to uniquely identify thetransaction for the applicable Member as usedinthe external system.",
+                                    "example": "online-20200305-INV123304",
+                                    "minLength": 0,
+                                    "maxLength": 36
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "Description for the transaction. Will be displayed to the scanner of the QR code.",
+                                    "example": "Online Cart Checkout",
+                                    "minLength": 0,
+                                    "maxLength": 60
+                                },
                                 "amount": {
                                     "type": "number",
-                                    "description": "Amount in to generate the QR code for. The amount will be displayed to the scanner of the QR code in order for them to confirm.\nIf omitted, the QR scanner can populate their own amount. Format R.cc / R ",
+                                    "description": "Amount to generate the payment token for. The amount will be displayed to the token reader in order for payer to confirm. If omitted, the payer can populate their own amount.\n(Format R.cc / R)",
                                     "example": "34.56",
                                     "minimum": 0,
                                     "exclusiveMinimum": false
                                 },
-                                "description": {
-                                    "description": "Description for the transaction. Will be displayed to the scanner of the QR code.",
-                                    "maxLength": 60,
-                                    "minLength": 0,
-                                    "type": "string"
+                                "expiryTime": {
+                                    "type": "string",
+                                    "description": "The expiry date and time of the resulting payment request token code. If not specified, then never expire.\n(ISO8601 yyyy-mm-ddThh:mm:ss.nnnZ). ",
+                                    "format": "date-time",
+                                    "example": "2021-02-28T13:45:00Z"
                                 },
                                 "dueDate": {
-                                    "description": "Informational field indicating the date by when the payment must be completed.\n(ISO8601 yyyy-mm-dd)",
-                                    "format": "date",
-                                    "type": "string"
-                                },
-                                "expiryTime": {
-                                    "description": "Expiry date and time (ISO8601 yyyy-mm-ddThh:mm:ss.nnnZ). After this time scanning the QR will result in an invalid QR response.",
-                                    "format": "date-time",
                                     "type": "string",
-                                    "x-nullable": true
+                                    "description": "Informational field indicating the date by when the payment is due.\n(ISO8601 yyyy-mm-dd)",
+                                    "format": "date",
+                                    "example": "2021-11-30"
                                 },
                                 "payeeCategory1": {
-                                    "description": "Payee category 1",
-                                    "maxLength": 50,
-                                    "minLength": 0,
                                     "type": "string",
-                                    "x-nullable": true
+                                    "description": "User field to categorize the transaction.",
+                                    "example": "Online",
+                                    "minLength": 0,
+                                    "maxLength": 50
                                 },
                                 "payeeCategory2": {
-                                    "description": "Payee category 2",
-                                    "maxLength": 50,
-                                    "minLength": 0,
                                     "type": "string",
-                                    "x-nullable": true
+                                    "description": "User field to categorize the transaction.",
+                                    "example": "Food",
+                                    "minLength": 0,
+                                    "maxLength": 50
                                 },
                                 "payeeCategory3": {
-                                    "description": "Payee category 3",
-                                    "maxLength": 50,
-                                    "minLength": 0,
                                     "type": "string",
-                                    "x-nullable": true
-                                },
-                                "payeeRefInfo": {
-                                    "description": "Payee reference",
-                                    "maxLength": 36,
+                                    "description": "User field to categorize the transaction.",
+                                    "example": "Canned Goods",
                                     "minLength": 0,
-                                    "type": "string"
+                                    "maxLength": 50
                                 },
                                 "requestId": {
-                                    "description": "The unique reference generated by the external system/application used to identify the request.\nRecommended UUID (ISO/IEC 9834-8:201)",
-                                    "maxLength": 36,
-                                    "minLength": 0,
                                     "type": "string",
-                                    "x-nullable": true
-                                },
-                                "requestTip": {
-                                    "description": "Request tip",
-                                    "type": "boolean",
-                                    "x-nullable": true
-                                },
-                                "requestTokenImage": {
-                                    "description": "Request token",
-                                    "type": "boolean",
-                                    "x-nullable": true
-                                },
-                                "siteName": {
-                                    "description": "Site name",
-                                    "maxLength": 100,
+                                    "description": "The unique reference generated by the external system/application used to identify the request.\nRecommended UUID (ISO/IEC 9834-8:2014)",
+                                    "example": "3a71a689-46b9-45d1-8b3d-0f6d38cf2524",
                                     "minLength": 0,
-                                    "type": "string",
-                                    "x-nullable": true
+                                    "maxLength": 36
                                 },
                                 "siteRefInfo": {
-                                    "description": "Site reference",
-                                    "maxLength": 36,
-                                    "minLength": 0,
                                     "type": "string",
-                                    "x-nullable": true
+                                    "description": "A reference used by the payee / external system to identify the specific business unit.",
+                                    "example": "ONLINE-GROC",
+                                    "minLength": 0,
+                                    "maxLength": 36
+                                },
+                                "siteName": {
+                                    "type": "string",
+                                    "description": "Used to identify the site that created the token request.",
+                                    "example": "WebShop",
+                                    "minLength": 0,
+                                    "maxLength": 100
+                                },
+                                "useOnce": {
+                                    "type": "boolean",
+                                    "default": "false",
+                                    "description": "Indicator to specify if the resulting token can be used once only or multiple times.",
+                                    "enum": [
+                                        "true",
+                                        "false"
+                                    ],
+                                    "example": false
+                                },
+                                "requestTip": {
+                                    "type": "boolean",
+                                    "default": "false",
+                                    "description": "Indicator for payee to specify if tip must be requested.",
+                                    "enum": [
+                                        "true",
+                                        "false"
+                                    ],
+                                    "example": "false"
+                                },
+                                "requestTokenImage": {
+                                    "type": "boolean",
+                                    "default": "false",
+                                    "description": "Indicator for payee to specify if image of token must be provided (in base64 encodedformat)",
+                                    "enum": [
+                                        "true",
+                                        "false"
+                                    ],
+                                    "example": "true"
                                 },
                                 "tokenImageSize": {
+                                    "type": "string",
                                     "default": "SMALL",
-                                    "description": "Token image size",
+                                    "description": "The dimensions of the token image requiredin pixels. * LARGE(1024x1024px)\n* MEDIUM(512x512px)\n* SMALL(256x256px)",
                                     "enum": [
                                         "SMALL",
                                         "MEDIUM",
                                         "LARGE"
                                     ],
-                                    "type": "string",
-                                    "x-nullable": true
-                                },
-                                "useOnce": {
-                                    "description": "Use once",
-                                    "type": "boolean",
-                                    "x-nullable": true
+                                    "example": "MEDIUM"
                                 }
                             },
                             "required": [
-                                "description",
-                                "payeeRefInfo"
-                            ],
-                            "description": "Request payload to generate a payment token"
+                                "payeeRefInfo",
+                                "description"
+                            ]
                         },
                         "description": ""
                     },
