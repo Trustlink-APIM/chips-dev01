@@ -15,9 +15,9 @@
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
-    "basePath": "/pos/token",
+    "basePath": "/pos/payments/tokenapi",
     "paths": {
-        "/token": {
+        "/tokens": {
             "get": {
                 "produces": [
                     "application/json"
