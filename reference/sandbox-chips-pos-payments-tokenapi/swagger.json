@@ -440,7 +440,7 @@
                     {
                         "type": "string",
                         "in": "header",
-                        "name": "Authorization",
+                        "name": "Authentication",
                         "description": "[Merchant UUID and Device API Key Authentication](https://marketplace.trustlinkhosting.com/chips-merchant-device-auth)."
                     }
                 ],
