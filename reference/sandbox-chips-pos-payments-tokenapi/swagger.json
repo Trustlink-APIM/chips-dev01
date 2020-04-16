@@ -161,6 +161,13 @@
                             ]
                         },
                         "description": ""
+                    },
+                    {
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "description": "Merchant Device API Key Authentication",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -651,6 +658,14 @@
                         "in": "query",
                         "name": "orderBy",
                         "type": "string"
+                    },
+                    {
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "description": "Merchant Device API Key Authentication",
+                        "required": true,
+                        "pattern": ""
                     }
                 ],
                 "responses": {
