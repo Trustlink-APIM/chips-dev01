@@ -1488,21 +1488,18 @@
     },
     "definitions": {},
     "securityDefinitions": {
-        "Merchant Device API Key Authentication": {
+        "Merchant Device API Key Basic Authentication": {
+            "name": "Authorization",
             "type": "basic",
             "description": "The CHIPS Payment Request APIs require Basic Authentication using the merchantUUID and the deviceAPIKey. Thus the Authorization header should contain a base64 encoded concatenation of merchantUUID, colon and deviceAPIKey.\n[More details](https://marketplace.trustlinkhosting.com/chips-merchant-device-auth)"
         },
-        "bearerAuth": {
-            "name": "Authorization",
-            "type": "apiKey",
-            "in": "header"
-        },
         "Marketplace API Key": {
             "type": "apiKey",
-            "description": "API Key",
-            "name": "marketplaceKeyId"
-        },
-        "in": "header"
+            "description": "Markerplace API Key",
+            "name": "marketplaceKeyId",
+            "in": "header"
+        }
+        
     },
     "x-components": {},
     "host": "marketplace-qa.trustlinkhosting.com:8165",
