@@ -63,7 +63,7 @@
                                     "type": "string",
                                     "description": "The expiry date and time of the resulting payment request token code. If not specified, then never expire.\n(ISO8601 yyyy-mm-ddThh:mm:ss.nnnZ). ",
                                     "format": "date-time",
-                                    "example": "2020-04-14T16:31:43.715+02:00"
+                                    "example": "2030-01-01T12:00:00.000+02:00"
                                 },
                                 "dueDate": {
                                     "type": "string",
@@ -168,6 +168,14 @@
                         "name": "Authorization",
                         "description": "Merchant Device API Key Authentication",
                         "required": true
+                    },
+                    {
+                        "Marketplace API Key": {
+                            "type": "apiKey",
+                            "description": "Marketplace API Key",
+                            "name": "marketplaceKeyId",
+                            "in": "header"
+                        }
                     }
                 ],
                 "responses": {
@@ -666,6 +674,14 @@
                         "description": "Merchant Device API Key Authentication",
                         "required": true,
                         "pattern": ""
+                    },
+                    {
+                        "Marketplace API Key": {
+                            "type": "apiKey",
+                            "description": "Marketplace API Key",
+                            "name": "marketplaceKeyId",
+                            "in": "header"
+                        }
                     }
                 ],
                 "responses": {
