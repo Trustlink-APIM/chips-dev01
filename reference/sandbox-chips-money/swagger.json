@@ -1,0 +1,246 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "CHIPS Money API",
+        "version": "1.0",
+        "license": {
+            "name": " Apache 2.0 License",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "termsOfService": " https://marketplace.trustlinkhosting.com",
+        "contact": {
+            "name": "API Sales",
+            "url": "https://marketplace.trustlinkhosting.com",
+            "email": "apisales@trustlink.co.za"
+        },
+        "description": "The CHIPS Money API utilizes the CHIPS Payment Network that allows creation of user ecosystem via and App in order for users to convert cash to CHIPS at supported ATMs and Store, make CHIPS user to CHIPS user Payments, Scan to pay and code to pay at supported stores and convert CHIPS to cash at supported ATMs and stores.\n\n# Overview\n\nSee more info on the business processes and technical processes below\n* [business flow description]\n* [API example flow]\n* [API environments]\n\nFor more info on CHIPS&reg; and the Trustlink API Marplace se see:\n* [CHIPS home page](https://chips.co.za)\n\n\n# Getting Started\n* Register on the [Trustlink API Marketplace](https://marketplace.trustlinkhosting.com/component/apiportal/registration)\n* Send an email requesting access to the CHIPS Money API to apisales@trustlink.co.za\n\n# Terms and Conditions\nBy using these APIs you agree to the following terms and conditions\n1. [CHIPS Terms and Conditions](http://www.chips.co.za/downloads/CHIPS_Terms_Conditions_2019-07-25.pdf)\n1. [AOS Terms and Conditions](http://www.chips.co.za/downloads/AOS_Terms_and_Conditions_2018-06-26.pdf)\n\n"
+    },
+    "host": "tar.qa.tlsag.net",
+    "schemes": [
+        "https"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "paths": {
+        "/cashsend/atm": {
+            "post": {
+                "summary": "SMS ATM Cash Voucher",
+                "operationId": "chips-post-cashsend-atm",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "title": "CHIPS Cash Send 200 Success",
+                            "type": "object",
+                            "x-tags": [
+                                "Cash Send"
+                            ],
+                            "description": "",
+                            "properties": {
+                                "uuid": {
+                                    "description": "UUID (ISO/IEC 9834-8:201)",
+                                    "maxLength": 36,
+                                    "minLength": 36,
+                                    "type": "string"
+                                },
+                                "transaction": {
+                                    "description": "Cash send transactions",
+                                    "type": "array",
+                                    "items": {
+                                        "description": "Cash send transactions",
+                                        "type": "object",
+                                        "properties": {
+                                            "transactionType": {
+                                                "description": "Transaction type",
+                                                "enum": [
+                                                    "COMMISSION",
+                                                    "FEE",
+                                                    "FUNDING",
+                                                    "INTEREST",
+                                                    "LIQUIDITY",
+                                                    "PAYMENT",
+                                                    "PAY_IN",
+                                                    "PAY_OUT",
+                                                    "REVERSAL"
+                                                ],
+                                                "type": "string"
+                                            },
+                                            "uuid": {
+                                                "description": "Transaction UUID (ISO/IEC 9834-8:201)",
+                                                "maxLength": 36,
+                                                "minLength": 36,
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "transactionType",
+                                            "uuid"
+                                        ]
+                                    }
+                                },
+                                "status": {
+                                    "description": "Status",
+                                    "enum": [
+                                        "CANCELLED",
+                                        "FINALISED",
+                                        "PENDING",
+                                        "REVERSED"
+                                    ],
+                                    "type": "string"
+                                },
+                                "requestId": {
+                                    "description": "External request identifier. Recommended UUID (ISO/IEC 9834-8:201)",
+                                    "maxLength": 36,
+                                    "minLength": 0,
+                                    "type": "string",
+                                    "x-nullable": true
+                                },
+                                "provider": {
+                                    "description": "Cash send provider",
+                                    "enum": [
+                                        "FNB",
+                                        "NEDBANK"
+                                    ],
+                                    "type": "string"
+                                },
+                                "payerRefInfo": {
+                                    "description": "External reference to be displayed on the payers transaction history",
+                                    "maxLength": 36,
+                                    "minLength": 0,
+                                    "type": "string"
+                                },
+                                "payerAccountUuid": {
+                                    "description": "Payer account UUID (ISO/IEC 9834-8:201)",
+                                    "maxLength": 36,
+                                    "minLength": 36,
+                                    "type": "string"
+                                },
+                                "modifiedBy": {
+                                    "description": "Member UUID (ISO/IEC 9834-8:201)",
+                                    "type": "string",
+                                    "x-nullable": true
+                                },
+                                "mobileNumber": {
+                                    "description": "Mobile number of the recipient",
+                                    "maxLength": 15,
+                                    "minLength": 0,
+                                    "pattern": "^((\\+[1-9]?[0-9])|0)?[7-9][0-9]{9}$",
+                                    "type": "string"
+                                },
+                                "lastModified": {
+                                    "description": "Date and time last modified (ISO8601 yyyy-mm-ddThh:mm:ss.nnnZ)",
+                                    "format": "date-time",
+                                    "type": "string"
+                                },
+                                "createdBy": {
+                                    "description": "Member UUID (ISO/IEC 9834-8:201)",
+                                    "type": "string",
+                                    "x-nullable": true
+                                },
+                                "created": {
+                                    "description": "Date and time created (ISO8601 yyyy-mm-ddThh:mm:ss.nnnZ)",
+                                    "format": "date-time",
+                                    "type": "string"
+                                },
+                                "amount": {
+                                    "description": "Amount",
+                                    "exclusiveMinimum": true,
+                                    "minimum": 0,
+                                    "type": "number"
+                                }
+                            },
+                            "required": [
+                                "uuid",
+                                "status",
+                                "provider",
+                                "payerAccountUuid",
+                                "lastModified",
+                                "created",
+                                "amount"
+                            ]
+                        }
+                    }
+                },
+                "description": "Send an SMS cash voucher that can be withdrawn at either a Nedbank or FNB ATM.",
+                "tags": [
+                    "Send Cash"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "title": "CHIPS Cash Send Request",
+                            "type": "object",
+                            "properties": {
+                                "requestId": {
+                                    "description": "External request identifier. Recommended UUID (ISO/IEC 9834-8:201)",
+                                    "maxLength": 36,
+                                    "minLength": 0,
+                                    "type": "string",
+                                    "x-nullable": true
+                                },
+                                "provider": {
+                                    "description": "Cash send provider",
+                                    "enum": [
+                                        "FNB",
+                                        "NEDBANK"
+                                    ],
+                                    "type": "string"
+                                },
+                                "payerRefInfo": {
+                                    "description": "External reference to be displayed on the payers transaction history",
+                                    "maxLength": 36,
+                                    "minLength": 0,
+                                    "type": "string",
+                                    "x-nullable": true
+                                },
+                                "payerAccountUuid": {
+                                    "description": "Payer account UUID (ISO/IEC 9834-8:201)",
+                                    "maxLength": 36,
+                                    "minLength": 36,
+                                    "type": "string"
+                                },
+                                "mobileNumber": {
+                                    "description": "Mobile number of the recipient",
+                                    "maxLength": 15,
+                                    "minLength": 0,
+                                    "pattern": "^((\\+[1-9]?[0-9])|0)?[7-9][0-9]{9}$",
+                                    "type": "string"
+                                },
+                                "amount": {
+                                    "description": "Amount",
+                                    "exclusiveMinimum": true,
+                                    "minimum": 0,
+                                    "type": "number"
+                                }
+                            },
+                            "description": "Payload to initiate a cash send that will result in an ATM withdrawal",
+                            "required": [
+                                "amount",
+                                "mobileNumber",
+                                "payerAccountUuid",
+                                "provider"
+                            ],
+                            "x-tags": [
+                                "Cash Send"
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {},
+    "basePath": "/money",
+    "tags": [
+        {
+            "name": "Send Cash"
+        }
+    ],
+    "buildtarget": "stoplight"
+}
