@@ -167,7 +167,7 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "anyOf": [
+                            "allOf": [
                                 {
                                     "title": "CHIPS Error",
                                     "type": "object",
