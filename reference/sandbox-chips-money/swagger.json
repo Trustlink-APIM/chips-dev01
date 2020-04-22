@@ -26,7 +26,7 @@
         "application/json"
     ],
     "paths": {
-        "/cashsend/atm": {
+        "/cashsends/atm": {
             "post": {
                 "summary": "SMS ATM Cash Voucher",
                 "operationId": "chips-post-cashsend-atm",
@@ -244,7 +244,8 @@
                 "tags": [
                     "Cash Send"
                 ]
-            }
+            },
+            "parameters": []
         },
         "/cashsends/atm/fees": {
             "get": {
