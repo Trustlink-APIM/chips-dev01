@@ -167,8 +167,21 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
+                            "title": "CHIPS Error",
                             "type": "object",
                             "properties": {
+                                "key": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "detail": {
+                                    "type": "string"
+                                },
                                 "apimStatus": {
                                     "type": "object",
                                     "title": "Status",
@@ -254,8 +267,21 @@
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
+                            "title": "CHIPS Error",
                             "type": "object",
                             "properties": {
+                                "key": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "detail": {
+                                    "type": "string"
+                                },
                                 "apimStatus": {
                                     "type": "object",
                                     "title": "Status",
@@ -341,8 +367,21 @@
                     "404": {
                         "description": "Not Found",
                         "schema": {
+                            "title": "CHIPS Error",
                             "type": "object",
                             "properties": {
+                                "key": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "detail": {
+                                    "type": "string"
+                                },
                                 "apimStatus": {
                                     "type": "object",
                                     "title": "Status",
@@ -428,8 +467,21 @@
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
+                            "title": "CHIPS Error",
                             "type": "object",
                             "properties": {
+                                "key": {
+                                    "type": "string"
+                                },
+                                "code": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "detail": {
+                                    "type": "string"
+                                },
                                 "apimStatus": {
                                     "type": "object",
                                     "title": "Status",
@@ -513,7 +565,7 @@
                         }
                     }
                 },
-                "description": "Send an SMS cash voucher that can be withdrawn at either a Nedbank or FNB ATM.",
+                "description": "Send an SMS cash voucher that can be withdrawn at a Nedbank ATM.",
                 "parameters": [
                     {
                         "in": "body",
@@ -527,39 +579,33 @@
                             ],
                             "properties": {
                                 "requestId": {
-                                    "description": "External request identifier. Recommended UUID (ISO/IEC 9834-8:201)",
-                                    "maxLength": 36,
-                                    "minLength": 0,
                                     "type": "string",
-                                    "x-nullable": true
-                                },
-                                "provider": {
-                                    "description": "Cash send provider",
-                                    "enum": [
-                                        "FNB",
-                                        "NEDBANK"
-                                    ],
-                                    "type": "string"
+                                    "description": "External request identifier.\nRecommended UUID (ISO/IEC 9834-8:2014)",
+                                    "example": "7a7ef7ff-b599-40ba-9ede-68d542da53f4",
+                                    "minLength": 0,
+                                    "maxLength": 36
                                 },
                                 "payerRefInfo": {
-                                    "description": "External reference to be displayed on the payers transaction history",
-                                    "maxLength": 36,
-                                    "minLength": 0,
                                     "type": "string",
-                                    "x-nullable": true
+                                    "description": "External reference to be displayed on the payers transaction history",
+                                    "example": "ATM Payments",
+                                    "minLength": 0,
+                                    "maxLength": 36
                                 },
                                 "payerAccountUuid": {
+                                    "type": "string",
                                     "description": "Payer account UUID (ISO/IEC 9834-8:201)",
-                                    "maxLength": 36,
+                                    "example": "582952d0-df77-4e1b-9d47-7fce0033dde0",
                                     "minLength": 36,
-                                    "type": "string"
+                                    "maxLength": 36
                                 },
                                 "mobileNumber": {
+                                    "type": "string",
                                     "description": "Mobile number of the recipient",
-                                    "maxLength": 15,
+                                    "example": "+27821231234",
                                     "minLength": 0,
-                                    "pattern": "^((\\+[1-9]?[0-9])|0)?[7-9][0-9]{9}$",
-                                    "type": "string"
+                                    "maxLength": 15,
+                                    "pattern": "^((\\+[1-9]?[0-9])|0)?[7-9][0-9]{9}$"
                                 },
                                 "amount": {
                                     "type": "number",
@@ -571,7 +617,6 @@
                                 }
                             },
                             "required": [
-                                "provider",
                                 "payerAccountUuid",
                                 "mobileNumber",
                                 "amount"
