@@ -588,7 +588,7 @@
                                 "payerRefInfo": {
                                     "type": "string",
                                     "description": "External reference to be displayed on the payers transaction history",
-                                    "example": "ATM Payments",
+                                    "example": "atm-cashsend-00001",
                                     "minLength": 0,
                                     "maxLength": 36
                                 },
@@ -614,12 +614,19 @@
                                     "minimum": 10,
                                     "multipleOf": 10,
                                     "exclusiveMinimum": true
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "Description for the transaction.",
+                                    "example": "ATM Payment",
+                                    "maxLength": 60
                                 }
                             },
                             "required": [
                                 "payerAccountUuid",
                                 "mobileNumber",
-                                "amount"
+                                "amount",
+                                "description"
                             ]
                         }
                     },
