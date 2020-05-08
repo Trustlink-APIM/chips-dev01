@@ -569,6 +569,12 @@
                         "description": "Marketplace API Key",
                         "name": "marketplaceKeyId",
                         "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Version of the API. (Latest version 1.0)",
+                        "name": "version",
+                        "in": "header"
                     }
                 ],
                 "tags": [
@@ -996,6 +1002,12 @@
                         "description": "Marketplace API Key",
                         "name": "marketplaceKeyId",
                         "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Version of the API. (Latest version 1.0)",
+                        "name": "version",
+                        "in": "header"
                     }
                 ],
                 "tags": [
@@ -1040,6 +1052,12 @@
                         "type": "string",
                         "description": "Marketplace API Key",
                         "name": "marketplaceKeyId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Version of the API. (Latest version 1.0)",
+                        "name": "version",
                         "in": "header"
                     }
                 ],
