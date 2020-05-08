@@ -645,7 +645,8 @@
                         "type": "string",
                         "in": "header",
                         "name": "Authorization",
-                        "description": "See CHIPS Authorization Methods"
+                        "description": "See CHIPS Authorization Methods",
+                        "required": true
                     },
                     {
                         "type": "string",
@@ -1723,6 +1724,13 @@
                 "operationId": "chips-get-account",
                 "description": "Get account details including balance.\n\n**Testing on Storefront and Sandbox**\n\nThe following uuid will have the following mocked responses for Storefront and Sandbox APIs. \n\n| uuid | availableBalanceAmount |  \n|---|---|\n| 0cd75155-6e60-4471-b0b1-4563ab36676c | 345.05 |\n| fbb9f3a7-402f-432d-8293-d3c0f63d3c4d | 1234.56 |\n",
                 "parameters": [
+                    {
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "description": "See CHIPS Authorization Methods",
+                        "required": true
+                    },
                     {
                         "type": "string",
                         "description": "Marketplace API Key",
