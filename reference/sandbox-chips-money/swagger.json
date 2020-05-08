@@ -1237,7 +1237,7 @@
             },
             "parameters": []
         },
-        "/account/{uuid}": {
+        "/accounts/{uuid}": {
             "get": {
                 "summary": "Your GET endpoint",
                 "tags": [
