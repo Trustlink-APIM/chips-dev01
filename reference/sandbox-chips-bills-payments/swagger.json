@@ -1082,6 +1082,15 @@
                         "required": true
                     },
                     {
+                        "type": "number",
+                        "in": "query",
+                        "name": "amount",
+                        "required": true,
+                        "format": "double",
+                        "minimum": 0,
+                        "description": "Amount that should be paid."
+                    },
+                    {
                         "type": "string",
                         "description": "Marketplace API Key",
                         "name": "marketplaceKeyId",
